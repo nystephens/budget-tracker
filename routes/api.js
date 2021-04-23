@@ -6,9 +6,13 @@ router.post("/api/transaction", ({ body }, res) => {
     body,
     { new: true, runValidators: true }
   )
-    .then(dbTransaction => {
-      res.json(dbTransaction);
-    })
+  .then((dbTransaction) => {
+    if (!dbTransaction.ok) {
+        // error processing
+        throw 'Error';
+    }
+    return res.json(dbTransaction)
+})
     .catch(err => {
       res.status(404).json(err);
     });
@@ -29,8 +33,9 @@ router.post("/api/transaction/bulk", ({ body }, res) => {
 
 router.get("/api/transaction", (req, res) => {
   Transaction.find({}).sort(
-    { date: -1 },
-    { new: true, runValidators: true }
+    { date: -1 }
+    // sort only takes one arg
+    // { new: true, runValidators: true }
   )
     .then(dbTransaction => {
       res.json(dbTransaction);

@@ -13,7 +13,7 @@ request.onsuccess = function(event) {
 
   // check if app is online, if yes run checkDatabase() function to send all local db data to api
   if (navigator.onLine) {
-    uploadPizza();
+    uploadTransaction();
   }
 };
 
@@ -25,21 +25,21 @@ request.onerror = function(event) {
 function saveRecord(record) {
   const transaction = db.transaction(['new_transaction'], 'readwrite');
 
-  const pizzaObjectStore = transaction.objectStore('new_transaction');
+  const transactionObjectStore = transaction.objectStore('new_transaction');
   console.log(record);
   // add record to your store with add method.
-  pizzaObjectStore.add(record);
+  transactionObjectStore.add(record);
 };
 
-function uploadPizza() {
+function uploadTransaction() {
   // open a transaction on your pending db
   const transaction = db.transaction(['new_transaction'], 'readwrite');
 
   // access your pending object store
-  const pizzaObjectStore = transaction.objectStore('new_transaction');
+  const transactionObjectStore = transaction.objectStore('new_transaction');
 
   // get all records from store and set to a variable
-  const getAll = pizzaObjectStore.getAll();
+  const getAll = transactionObjectStore.getAll();
 
   getAll.onsuccess = function() {
     // if there was data in indexedDb's store, let's send it to the api server
@@ -59,9 +59,9 @@ function uploadPizza() {
           }
 
           const transaction = db.transaction(['new_transaction'], 'readwrite');
-          const pizzaObjectStore = transaction.objectStore('new_transaction');
+          const transactionObjectStore = transaction.objectStore('new_transaction');
           // clear all items in your store
-          pizzaObjectStore.clear();
+          transactionObjectStore.clear();
         })
         .catch(err => {
           // set reference to redirect back here
