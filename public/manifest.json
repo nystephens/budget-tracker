@@ -47,5 +47,6 @@
   "theme_color": "#317EFB",
   "background_color": "#ffffff",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone"
 }
