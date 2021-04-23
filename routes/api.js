@@ -3,8 +3,8 @@ const Transaction = require("../models/transaction.js");
 
 router.post("/api/transaction", ({ body }, res) => {
   Transaction.create(
-    body,
-    { new: true, runValidators: true }
+    body
+    // { new: true, runValidators: true }
   )
     .then((dbTransaction) => { res.json(dbTransaction) })
     .catch(err => {
