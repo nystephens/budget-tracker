@@ -6,13 +6,7 @@ router.post("/api/transaction", ({ body }, res) => {
     body,
     { new: true, runValidators: true }
   )
-  .then((dbTransaction) => {
-    if (!dbTransaction.ok) {
-        // error processing
-        throw 'Error';
-    }
-    return res.json(dbTransaction)
-})
+    .then((dbTransaction) => { res.json(dbTransaction) })
     .catch(err => {
       res.status(404).json(err);
     });
