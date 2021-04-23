@@ -1,6 +1,7 @@
 {
   "name": "Budget Tracker",
   "short_name": "Budget Tracker",
+  "description":"Budget Tracker is a PWA that allows you to track income and spending over time.",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
