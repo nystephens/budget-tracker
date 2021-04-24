@@ -4,7 +4,7 @@ const Transaction = require("../models/transaction.js");
 router.post("/api/transaction", ({ body }, res) => {
   Transaction.create(
     body
-    // { new: true, runValidators: true }
+
   )
     .then((dbTransaction) => { res.json(dbTransaction) })
     .catch(err => {
@@ -28,8 +28,6 @@ router.post("/api/transaction/bulk", ({ body }, res) => {
 router.get("/api/transaction", (req, res) => {
   Transaction.find({}).sort(
     { date: -1 }
-    // sort only takes one arg
-    // { new: true, runValidators: true }
   )
     .then(dbTransaction => {
       res.json(dbTransaction);
